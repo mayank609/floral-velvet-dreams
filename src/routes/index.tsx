@@ -95,7 +95,7 @@ function Home() {
                 <p className="font-display text-lg">{t}</p>
                 <p className="text-xs text-ink/60">{s}</p>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
