@@ -49,13 +49,13 @@ export function Header() {
           <button aria-label="Search" className="hidden rounded-full p-2 text-ink/70 hover:bg-blush-soft hover:text-rose sm:block">
             <Search className="h-4 w-4" />
           </button>
-          <div className="hidden items-center gap-1 sm:flex">
+          <div className="flex items-center gap-0.5 sm:gap-1">
             <a
               href="https://www.instagram.com/manivi_creations?utm_source=qr&igsh=MTk1ZHpkNDE1YjZkNQ%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="rounded-full p-2 text-ink/70 hover:bg-blush-soft hover:text-rose"
+              className="rounded-full p-1.5 text-ink/70 hover:bg-blush-soft hover:text-rose sm:p-2"
             >
               <Instagram className="h-4 w-4" />
             </a>
@@ -64,7 +64,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
-              className="rounded-full p-2 text-ink/70 hover:bg-blush-soft hover:text-rose"
+              className="rounded-full p-1.5 text-ink/70 hover:bg-blush-soft hover:text-rose sm:p-2"
             >
               <WhatsAppIcon className="h-4 w-4" />
             </a>
@@ -73,20 +73,11 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              className="rounded-full p-2 text-ink/70 hover:bg-blush-soft hover:text-rose"
+              className="rounded-full p-1.5 text-ink/70 hover:bg-blush-soft hover:text-rose sm:p-2"
             >
               <Facebook className="h-4 w-4" />
             </a>
           </div>
-          <a
-            href="https://wa.me/919982370423"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp"
-            className="rounded-full p-2 text-ink/70 hover:bg-blush-soft hover:text-rose sm:hidden"
-          >
-            <WhatsAppIcon className="h-4 w-4" />
-          </a>
           <button
             aria-label="Menu"
             onClick={() => setOpen((v) => !v)}
