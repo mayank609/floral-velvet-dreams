@@ -4,7 +4,7 @@ import multer from "multer";
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import "dotenv/config";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -25,20 +25,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// UPLOAD_DIR lets deploy targets point uploads at a persistent disk
-// (local disk in a container is wiped on every redeploy/restart).
-const uploadDir = process.env.UPLOAD_DIR
-  ? path.resolve(process.env.UPLOAD_DIR)
-  : path.join(__dirname, "public", "uploads");
+// Only the pre-existing, git-committed sample images live here — served
+// statically, never written to at runtime (Render's free tier has no
+// persistent disk, so anything written to local disk is lost on redeploy).
+const uploadDir = path.join(__dirname, "public", "uploads");
 const legacyDbPath = path.join(__dirname, "data", "products.json");
 
 const client = new MongoClient(MONGODB_URI);
 let products;
+let images;
 
 async function connectDb() {
   await client.connect();
   const db = client.db(MONGODB_DB_NAME);
   products = db.collection("products");
+  images = db.collection("images");
   await products.createIndex({ id: 1 }, { unique: true });
   console.log(`Connected to MongoDB database "${MONGODB_DB_NAME}"`);
   await seedFromLegacyFile();
@@ -68,18 +69,9 @@ async function seedFromLegacyFile() {
 // Serve statically uploaded files
 app.use("/uploads", express.static(uploadDir));
 
-// Multer Upload Configuration
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDir);
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname) || ".jpg";
-    const filename = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}${ext}`;
-    cb(null, filename);
-  }
-});
-const upload = multer({ storage });
+// Uploaded images are held in memory just long enough to write them into
+// MongoDB (see /api/upload) — nothing touches local disk at runtime.
+const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 8 * 1024 * 1024 } });
 
 // API Endpoints
 
@@ -143,12 +135,42 @@ app.post("/api/verify-password", (req, res) => {
   }
 });
 
-// 5. Image upload handler
-app.post("/api/upload", upload.single("image"), (req, res) => {
+// 5. Image upload handler — stores the file in MongoDB and returns a
+// /images/:id URL that route 6 below serves back out.
+app.post("/api/upload", upload.single("image"), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "No image file provided" });
   }
-  res.json({ path: `/uploads/${req.file.filename}` });
+  try {
+    const result = await images.insertOne({
+      contentType: req.file.mimetype,
+      data: req.file.buffer,
+      createdAt: new Date(),
+    });
+    res.json({ path: `/images/${result.insertedId}` });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to store image" });
+  }
+});
+
+// 6. Serve an uploaded image stored in MongoDB
+app.get("/images/:id", async (req, res) => {
+  let objectId;
+  try {
+    objectId = new ObjectId(req.params.id);
+  } catch {
+    return res.status(400).end();
+  }
+
+  try {
+    const doc = await images.findOne({ _id: objectId });
+    if (!doc) return res.status(404).end();
+    res.set("Content-Type", doc.contentType);
+    res.set("Cache-Control", "public, max-age=31536000, immutable");
+    res.send(doc.data.buffer ? Buffer.from(doc.data.buffer) : doc.data);
+  } catch (err) {
+    res.status(500).end();
+  }
 });
 
 // Start Server

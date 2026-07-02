@@ -40,7 +40,7 @@ const BACKEND_URL = import.meta.env.VITE_BACKEND_API_URL || "http://localhost:30
 
 export const getProductImageUrl = (imagePath: string) => {
   if (!imagePath) return "";
-  if (imagePath.startsWith("/uploads")) {
+  if (imagePath.startsWith("/uploads") || imagePath.startsWith("/images")) {
     return `${BACKEND_URL}${imagePath}`;
   }
   return imagePath;
