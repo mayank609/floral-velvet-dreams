@@ -139,16 +139,16 @@ function Home() {
       {/* ABOUT SPLIT */}
       <section className="bg-gradient-blush">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-24 sm:px-10 md:grid-cols-2">
-          <div className="relative">
-            <img src={craft} alt="Artisan at work" loading="lazy" className="aspect-[4/5] w-full rounded-sm object-cover shadow-luxe" />
-            <div className="absolute -bottom-6 -right-6 hidden rounded-full bg-cream px-6 py-6 text-center shadow-luxe sm:block">
+          <Reveal className="relative">
+            <img src={craft} alt="Artisan at work" loading="lazy" className="aspect-[4/5] w-full rounded-sm object-cover shadow-luxe transition-transform duration-700 hover:scale-[1.02]" />
+            <div className="absolute -bottom-6 -right-6 hidden rounded-full bg-cream px-6 py-6 text-center shadow-luxe animate-float sm:block">
               <div className="font-hand text-4xl text-rose leading-none">since</div>
               <div className="font-display text-3xl">2024</div>
             </div>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={150}>
             <p className="eyebrow">Our Story</p>
-            <h2 className="mt-3 font-display text-4xl sm:text-5xl">A tiny studio, <br /> big blooming dreams.</h2>
+            <h2 className="mt-3 font-display text-4xl sm:text-5xl">A tiny studio, <br /> big <span className="text-shimmer">blooming</span> dreams.</h2>
             <p className="mt-6 text-ink/70">
               Manivi Creation began at a kitchen table with a pot of resin, a
               scatter of dried flowers and a promise: to make jewellery that
@@ -160,11 +160,11 @@ function Home() {
             </p>
             <Link
               to="/about"
-              className="mt-8 inline-flex items-center gap-2 border-b border-ink/40 pb-1 text-[11px] uppercase tracking-[0.3em] hover:border-rose hover:text-rose"
+              className="link-underline mt-8 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] hover:text-rose"
             >
               Read our story <ArrowRight className="h-3.5 w-3.5" />
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
