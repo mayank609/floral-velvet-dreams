@@ -6,11 +6,24 @@ import resin from "@/assets/cat-resin.jpg";
 import clay from "@/assets/cat-clay.jpg";
 import jewel from "@/assets/cat-jewellery.jpg";
 
+export type Category =
+  | "Kanha Ji Jhula"
+  | "Palki"
+  | "Pooja Thali"
+  | "Resin Photo Frames"
+  | "Keychains"
+  | "Varmala Preservation"
+  | "Resin Home Decor"
+  | "Clay Decor"
+  | "Gift Hampers";
+
 export type Product = {
   id: string;
   name: string;
   price: number;
-  category: "Kanha Ji Jhula" | "Palki" | "Pooja Thali" | "Resin Photo Frames" | "Keychains";
+  /** Overrides the plain `inr(price)` display when the price is a range or "onwards"/"varies" text. */
+  priceLabel?: string;
+  category: Category;
   image: string;
   tag?: string;
   description?: string;

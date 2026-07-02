@@ -20,7 +20,18 @@ export const Route = createFileRoute("/shop")({
   component: Shop,
 });
 
-const categories = ["All", "Kanha Ji Jhula", "Palki", "Pooja Thali", "Resin Photo Frames", "Keychains"] as const;
+const categories = [
+  "All",
+  "Kanha Ji Jhula",
+  "Palki",
+  "Pooja Thali",
+  "Resin Photo Frames",
+  "Keychains",
+  "Varmala Preservation",
+  "Resin Home Decor",
+  "Clay Decor",
+  "Gift Hampers",
+] as const;
 
 function Shop() {
   const { products } = Route.useLoaderData();

@@ -22,7 +22,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
   if (!product) return null;
 
   const whatsappText = encodeURIComponent(
-    `Hi Manivi Creation! I would like to purchase the following item:\n\n*Product:* ${product.name}\n*Price:* ${inr(product.price)}\n*Category:* ${product.category}\n\nIs it available for order?`
+    `Hi Manivi Creation! I would like to purchase the following item:\n\n*Product:* ${product.name}\n*Price:* ${product.priceLabel || inr(product.price)}\n*Category:* ${product.category}\n\nIs it available for order?`
   );
   
   // Primary WhatsApp number is +91 99823 70423 (format wa.me/919982370423)
@@ -68,7 +68,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
               {product.name}
             </h2>
             <p className="mt-3 font-display text-2xl text-rose font-medium">
-              {inr(product.price)}
+              {product.priceLabel || inr(product.price)}
             </p>
             <div className="mt-6 border-t border-gold-soft/40 pt-5">
               <h4 className="eyebrow !text-ink/60 mb-2">Description</h4>

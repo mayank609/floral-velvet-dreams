@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <rect width="400" height="500" fill="#f5e6e3"/>
+  <g fill="none" stroke="#c9a97a" stroke-width="1.5">
+    <circle cx="200" cy="220" r="46"/>
+    <path d="M170 236 l20 -36 l20 36 z" fill="#c9a97a" stroke="none" opacity="0.35"/>
+  </g>
+  <text x="200" y="320" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#8a6f57" letter-spacing="1">Image coming soon</text>
+  <text x="200" y="346" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#a98d76" letter-spacing="3">MANIVI CREATION</text>
+</svg>

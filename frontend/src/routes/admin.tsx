@@ -8,7 +8,19 @@ import {
   uploadImageServer,
   verifyPasswordServer,
 } from "@/lib/products-server";
-import { type Product, inr, getProductImageUrl } from "@/lib/products";
+import { type Product, type Category, inr, getProductImageUrl } from "@/lib/products";
+
+const CATEGORIES: Category[] = [
+  "Kanha Ji Jhula",
+  "Palki",
+  "Pooja Thali",
+  "Resin Photo Frames",
+  "Keychains",
+  "Varmala Preservation",
+  "Resin Home Decor",
+  "Clay Decor",
+  "Gift Hampers",
+];
 import {
   Plus,
   Edit2,
@@ -52,7 +64,8 @@ function AdminPage() {
   // Form fields
   const [name, setName] = useState("");
   const [price, setPrice] = useState(1000);
-  const [category, setCategory] = useState<"Kanha Ji Jhula" | "Palki" | "Pooja Thali" | "Resin Photo Frames" | "Keychains">("Kanha Ji Jhula");
+  const [priceLabel, setPriceLabel] = useState("");
+  const [category, setCategory] = useState<Category>("Kanha Ji Jhula");
   const [tag, setTag] = useState("");
   const [description, setDescription] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -94,6 +107,7 @@ function AdminPage() {
     setEditingProduct(null);
     setName("");
     setPrice(1000);
+    setPriceLabel("");
     setCategory("Kanha Ji Jhula");
     setTag("");
     setDescription("");
@@ -107,6 +121,7 @@ function AdminPage() {
     setEditingProduct(p);
     setName(p.name);
     setPrice(p.price);
+    setPriceLabel(p.priceLabel || "");
     setCategory(p.category);
     setTag(p.tag || "");
     setDescription(p.description || "");
@@ -149,6 +164,7 @@ function AdminPage() {
         id: editingProduct?.id || `${category[0].toLowerCase()}-${Date.now()}`,
         name,
         price: Number(price),
+        priceLabel: priceLabel || undefined,
         category,
         image: imageUrl,
         tag: tag || undefined,
@@ -311,7 +327,7 @@ function AdminPage() {
                       <td className="px-6 py-4">
                         <span className="rounded-full bg-blush-soft px-3 py-1 text-xs text-rose">{p.category}</span>
                       </td>
-                      <td className="px-6 py-4 font-medium text-rose">{inr(p.price)}</td>
+                      <td className="px-6 py-4 font-medium text-rose">{p.priceLabel || inr(p.price)}</td>
                       <td className="px-6 py-4">
                         {p.tag ? (
                           <span className="rounded-full bg-gold-soft/40 px-2 py-0.5 text-[10px] uppercase tracking-wider text-ink/70">
@@ -375,14 +391,12 @@ function AdminPage() {
                   <label className="eyebrow block !text-ink/60">Category</label>
                   <select
                     value={category}
-                    onChange={(e) => setCategory(e.target.value as any)}
+                    onChange={(e) => setCategory(e.target.value as Category)}
                     className="mt-2 w-full border-b border-ink/30 bg-transparent py-2 text-sm outline-none focus:border-rose"
                   >
-                    <option value="Kanha Ji Jhula">Kanha Ji Jhula</option>
-                    <option value="Palki">Palki</option>
-                    <option value="Pooja Thali">Pooja Thali</option>
-                    <option value="Resin Photo Frames">Resin Photo Frames</option>
-                    <option value="Keychains">Keychains</option>
+                    {CATEGORIES.map((c) => (
+                      <option key={c} value={c}>{c}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -398,6 +412,17 @@ function AdminPage() {
                     className="mt-2 w-full border-b border-ink/30 bg-transparent py-2 text-sm outline-none focus:border-rose"
                   />
                 </div>
+              </div>
+
+              <div>
+                <label className="eyebrow block !text-ink/60">Price Label (Optional)</label>
+                <input
+                  type="text"
+                  value={priceLabel}
+                  onChange={(e) => setPriceLabel(e.target.value)}
+                  placeholder="e.g. ₹2,499 – ₹4,999 or ₹999 onwards — shown instead of the plain price above"
+                  className="mt-2 w-full border-b border-ink/30 bg-transparent py-2 text-sm outline-none focus:border-rose"
+                />
               </div>
 
               <div className="grid gap-5 sm:grid-cols-2">
