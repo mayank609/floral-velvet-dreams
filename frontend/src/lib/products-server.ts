@@ -5,12 +5,16 @@ const BACKEND_API_URL = process.env.BACKEND_API_URL || "http://localhost:3001";
 
 export const getProductsServer = createServerFn({ method: "GET" })
   .handler(async () => {
+    const url = `${BACKEND_API_URL}/api/products`;
     try {
-      const res = await fetch(`${BACKEND_API_URL}/api/products`);
-      if (!res.ok) throw new Error("Failed to fetch products");
+      const res = await fetch(url);
+      if (!res.ok) {
+        const body = await res.text().catch(() => "");
+        throw new Error(`Failed to fetch products: ${res.status} ${res.statusText} — ${body.slice(0, 300)}`);
+      }
       return (await res.json()) as Product[];
     } catch (err) {
-      console.error("Failed to fetch products from backend:", err);
+      console.error(`Failed to fetch products from backend at ${url}:`, err);
       return [];
     }
   });
