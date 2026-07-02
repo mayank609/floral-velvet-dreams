@@ -2,7 +2,7 @@ import { inr, type Product } from "@/lib/products";
 
 export function ProductCard({ p }: { p: Product }) {
   return (
-    <article className="group">
+    <article className="group cursor-pointer transition-transform duration-500 hover:-translate-y-1">
       <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-blush-soft/40">
         <img
           src={p.image}
