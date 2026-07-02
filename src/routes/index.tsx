@@ -102,35 +102,36 @@ function Home() {
 
       {/* CATEGORIES */}
       <section className="mx-auto max-w-7xl px-6 py-24 sm:px-10">
-        <div className="mb-14 text-center">
+        <Reveal className="mb-14 text-center">
           <p className="eyebrow">Our Collections</p>
           <h2 className="mt-3 font-display text-4xl sm:text-5xl">Curated with intention</h2>
           <p className="mx-auto mt-3 max-w-xl text-sm text-ink/60">
             Three quiet worlds of craft — each one born from petals, patience and a little bit of magic.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid gap-6 md:grid-cols-3">
           {[
             { name: "Resin", tag: "Preserved blooms", img: resin },
             { name: "Clay", tag: "Sculpted florals", img: clay },
             { name: "Jewellery", tag: "Pearl & petal", img: jewel },
-          ].map((c) => (
-            <Link
-              key={c.name}
-              to="/shop"
-              className="group relative block aspect-[3/4] overflow-hidden rounded-sm"
-            >
-              <img src={c.img} alt={c.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-6 text-cream">
-                <p className="text-[10px] uppercase tracking-[0.3em] opacity-80">{c.tag}</p>
-                <h3 className="font-display text-3xl">{c.name}</h3>
-                <span className="mt-3 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] opacity-80 transition-opacity group-hover:opacity-100">
-                  Explore <ArrowRight className="h-3.5 w-3.5" />
-                </span>
-              </div>
-            </Link>
+          ].map((c, i) => (
+            <Reveal key={c.name} delay={i * 150}>
+              <Link
+                to="/shop"
+                className="hover-lift group relative block aspect-[3/4] overflow-hidden rounded-sm"
+              >
+                <img src={c.img} alt={c.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent transition-opacity duration-500 group-hover:from-ink/80" />
+                <div className="absolute inset-x-0 bottom-0 p-6 text-cream">
+                  <p className="text-[10px] uppercase tracking-[0.3em] opacity-80">{c.tag}</p>
+                  <h3 className="font-display text-3xl">{c.name}</h3>
+                  <span className="mt-3 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.3em] opacity-80 transition-all duration-500 group-hover:opacity-100 group-hover:gap-3">
+                    Explore <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </section>
