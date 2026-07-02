@@ -1,0 +1,69 @@
+[
+  {
+    "id": "r-01",
+    "name": "Aurelia Bloom Pendant",
+    "price": 1490,
+    "category": "Resin",
+    "image": "/uploads/product-1.jpg",
+    "tag": "New",
+    "description": "A gorgeous pendant featuring hand-pressed botanical flowers suspended in glass-like resin, finished with gold-plated hardware."
+  },
+  {
+    "id": "c-01",
+    "name": "Rosa Painted Bangle",
+    "price": 1290,
+    "category": "Clay",
+    "image": "/uploads/product-2.jpg",
+    "description": "Artfully sculpted clay bangle with detailed rose petals painted by hand, showcasing unique floral art."
+  },
+  {
+    "id": "j-01",
+    "name": "Petal Pearl Drops",
+    "price": 1690,
+    "category": "Jewellery",
+    "image": "/uploads/product-3.jpg",
+    "tag": "Bestseller",
+    "description": "Elegant drop earrings adorned with real pearls and preserved miniature petals, a perfect heirloom piece."
+  },
+  {
+    "id": "c-02",
+    "name": "Blush Blossom Locket",
+    "price": 1390,
+    "category": "Clay",
+    "image": "/uploads/product-4.jpg",
+    "description": "A hand-finished locket featuring sculpted clay blush blossoms. Perfect for carrying special memories."
+  },
+  {
+    "id": "r-02",
+    "name": "Meadow Resin Charm",
+    "price": 1190,
+    "category": "Resin",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "A miniature meadow of dried wildflowers frozen in clear, crystal resin. Lightweight and vibrant."
+  },
+  {
+    "id": "c-03",
+    "name": "Pastel Petal Earrings",
+    "price": 990,
+    "category": "Clay",
+    "image": "/uploads/cat-clay.jpg",
+    "tag": "Limited",
+    "description": "Charming pastel-toned floral studs made of premium oven-baked polymer clay, lightweight for all-day wear."
+  },
+  {
+    "id": "j-02",
+    "name": "Pearl Garden Bracelet",
+    "price": 1990,
+    "category": "Jewellery",
+    "image": "/uploads/cat-jewellery.jpg",
+    "description": "A dainty bracelet combining genuine freshwater pearls and delicate botanical charms."
+  },
+  {
+    "id": "r-03",
+    "name": "Wildflower Ring",
+    "price": 890,
+    "category": "Resin",
+    "image": "/uploads/product-1.jpg",
+    "description": "A subtle and lovely band ring embedded with tiny wildflowers and gold foil flakes."
+  }
+]

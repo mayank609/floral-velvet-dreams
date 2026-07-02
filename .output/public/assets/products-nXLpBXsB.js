@@ -1,0 +1,1 @@
+var e=`/assets/cat-jewellery-CbbDUnS2.jpg`,t=e=>`₹${e.toLocaleString(`en-IN`)}`;export{e as n,t};
