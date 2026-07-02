@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
 import { ProductCard } from "@/components/site/ProductCard";
+import { Reveal } from "@/components/site/Reveal";
 import { products } from "@/lib/products";
 import { ArrowRight, Sparkles, Leaf, HandHeart, Star } from "lucide-react";
 import hero from "@/assets/hero-jewellery.jpg";
