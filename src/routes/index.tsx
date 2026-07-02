@@ -19,38 +19,42 @@ function Home() {
     <Layout>
       {/* HERO */}
       <section className="relative overflow-hidden bg-gradient-blush">
+        {/* floating decorative blobs */}
+        <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-blush/50 blur-3xl animate-blob" />
+        <div className="pointer-events-none absolute -right-16 bottom-0 h-80 w-80 rounded-full bg-gold-soft/40 blur-3xl animate-blob [animation-delay:-6s]" />
+
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-16 sm:px-10 md:grid-cols-2 md:py-24">
           <div className="relative z-10">
-            <p className="eyebrow">Manivi Creation · Est. 2024</p>
+            <p className="eyebrow animate-fade-up [animation-delay:100ms]">Manivi Creation · Est. 2024</p>
             <h1 className="mt-5 font-display text-5xl leading-[1.05] text-ink sm:text-6xl md:text-7xl">
-              Little blooms,
+              <span className="inline-block animate-fade-up [animation-delay:200ms]">Little blooms,</span>
               <br />
-              <span className="font-hand text-6xl text-rose sm:text-7xl md:text-8xl">forever</span>
+              <span className="inline-block animate-fade-up font-hand text-6xl text-rose [animation-delay:400ms] sm:text-7xl md:text-8xl">forever</span>
               <br />
-              in resin & clay.
+              <span className="inline-block animate-fade-up [animation-delay:600ms]">in resin & clay.</span>
             </h1>
-            <p className="mt-6 max-w-md text-base text-ink/70">
+            <p className="mt-6 max-w-md text-base text-ink/70 animate-fade-up [animation-delay:800ms]">
               Slow-made, one-of-a-kind jewellery — real flowers preserved in
               crystal-clear resin and hand-sculpted clay, finished with pearls
               and gold.
             </p>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
+            <div className="mt-9 flex flex-wrap items-center gap-4 animate-fade-up [animation-delay:1000ms]">
               <Link
                 to="/shop"
-                className="group inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-[11px] uppercase tracking-[0.3em] text-cream transition-all hover:bg-rose"
+                className="group inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-[11px] uppercase tracking-[0.3em] text-cream transition-all duration-500 hover:bg-rose hover:shadow-luxe hover:-translate-y-0.5"
               >
                 Shop Collection
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/about"
-                className="text-[11px] uppercase tracking-[0.3em] text-ink/70 underline-offset-4 hover:text-rose hover:underline"
+                className="link-underline text-[11px] uppercase tracking-[0.3em] text-ink/70 hover:text-rose"
               >
                 Our Story
               </Link>
             </div>
 
-            <div className="mt-12 flex items-center gap-6 text-xs text-ink/60">
+            <div className="mt-12 flex items-center gap-6 text-xs text-ink/60 animate-fade-up [animation-delay:1200ms]">
               <div className="flex items-center gap-1 text-gold">
                 {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current" />)}
               </div>
@@ -58,8 +62,8 @@ function Home() {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="absolute -left-6 -top-6 h-24 w-24 rounded-full border border-gold-soft/70" />
+          <div className="relative animate-zoom-in [animation-delay:200ms]">
+            <div className="absolute -left-6 -top-6 h-24 w-24 rounded-full border border-gold-soft/70 animate-spin-slow" />
             <div className="absolute -bottom-8 -right-4 h-40 w-40 rounded-full bg-blush/40 blur-3xl" />
             <img
               src={hero}
@@ -71,22 +75,22 @@ function Home() {
             <img
               src={logo.url}
               alt=""
-              className="absolute -bottom-8 -left-8 hidden h-32 w-32 rounded-full ring-4 ring-cream md:block"
+              className="absolute -bottom-8 -left-8 hidden h-32 w-32 rounded-full ring-4 ring-cream animate-float md:block"
             />
           </div>
         </div>
       </section>
 
       {/* MARQUEE / VALUES */}
-      <section className="border-y border-gold-soft/40 bg-cream">
+      <section className="border-y border-gold-soft/40 bg-cream overflow-hidden">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 py-8 sm:grid-cols-3 sm:px-10">
           {[
             { icon: HandHeart, t: "Handmade to order", s: "Each piece touched only by our hands." },
             { icon: Leaf, t: "Real preserved flowers", s: "Foraged, dried, set in crystal resin." },
             { icon: Sparkles, t: "Gold-plated finishings", s: "Tarnish-resistant, wear every day." },
-          ].map(({ icon: Icon, t, s }) => (
-            <div key={t} className="flex items-center gap-4">
-              <Icon className="h-5 w-5 shrink-0 text-rose" />
+          ].map(({ icon: Icon, t, s }, i) => (
+            <Reveal key={t} delay={i * 120} className="flex items-center gap-4">
+              <Icon className="h-5 w-5 shrink-0 text-rose transition-transform duration-500 hover:rotate-12 hover:scale-110" />
               <div className="min-w-0">
                 <p className="font-display text-lg">{t}</p>
                 <p className="text-xs text-ink/60">{s}</p>
