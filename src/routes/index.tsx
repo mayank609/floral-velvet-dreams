@@ -170,17 +170,21 @@ function Home() {
 
       {/* FEATURED */}
       <section className="mx-auto max-w-7xl px-6 py-24 sm:px-10">
-        <div className="mb-14 flex flex-wrap items-end justify-between gap-4">
+        <Reveal className="mb-14 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow">Just Bloomed</p>
             <h2 className="mt-3 font-display text-4xl sm:text-5xl">New this season</h2>
           </div>
-          <Link to="/shop" className="text-[11px] uppercase tracking-[0.3em] text-ink/70 hover:text-rose">
+          <Link to="/shop" className="link-underline text-[11px] uppercase tracking-[0.3em] text-ink/70 hover:text-rose">
             View all →
           </Link>
-        </div>
+        </Reveal>
         <div className="grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 md:grid-cols-4">
-          {featured.map((p) => <ProductCard key={p.id} p={p} />)}
+          {featured.map((p, i) => (
+            <Reveal key={p.id} delay={i * 120}>
+              <ProductCard p={p} />
+            </Reveal>
+          ))}
         </div>
       </section>
 
@@ -191,39 +195,41 @@ function Home() {
             { q: "The pendant is impossibly delicate — like holding a garden.", n: "Ananya S." },
             { q: "Feels heirloom. I've received compliments every single day.", n: "Priya M." },
             { q: "Wrapped like a love letter. The craft speaks for itself.", n: "Isha R." },
-          ].map((t) => (
-            <figure key={t.n} className="text-center">
+          ].map((t, i) => (
+            <Reveal key={t.n} delay={i * 150} as="figure" className="text-center">
               <div className="mx-auto flex justify-center gap-1 text-gold">
-                {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-current" />)}
+                {Array.from({ length: 5 }).map((_, j) => <Star key={j} className="h-3.5 w-3.5 fill-current" />)}
               </div>
               <blockquote className="mt-5 font-display text-xl italic text-ink/80">
                 "{t.q}"
               </blockquote>
               <figcaption className="mt-4 text-xs uppercase tracking-[0.25em] text-ink/50">— {t.n}</figcaption>
-            </figure>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* WORKSHOP CTA */}
       <section className="mx-auto max-w-7xl px-6 py-24 sm:px-10">
-        <div className="relative overflow-hidden rounded-sm bg-ink px-8 py-16 text-cream sm:px-16 sm:py-24">
-          <div className="absolute -right-10 top-0 h-full w-1/2 bg-gradient-to-l from-rose/40 to-transparent" />
+        <Reveal className="relative overflow-hidden rounded-sm bg-ink px-8 py-16 text-cream sm:px-16 sm:py-24">
+          <div className="pointer-events-none absolute -right-10 top-0 h-full w-1/2 bg-gradient-to-l from-rose/40 to-transparent" />
+          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-rose/30 blur-3xl animate-blob" />
+          <div className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-gold/20 blur-3xl animate-blob [animation-delay:-8s]" />
           <div className="relative max-w-xl">
             <p className="eyebrow !text-gold-soft">Workshops</p>
-            <h2 className="mt-3 font-display text-4xl sm:text-5xl">Come, make something beautiful.</h2>
+            <h2 className="mt-3 font-display text-4xl sm:text-5xl">Come, make something <span className="font-hand text-shimmer">beautiful.</span></h2>
             <p className="mt-5 text-cream/70">
               Small-group resin and clay sessions in our sunlit studio. Leave
               with your own piece — and possibly a new obsession.
             </p>
             <Link
               to="/workshops"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-cream px-7 py-3.5 text-[11px] uppercase tracking-[0.3em] text-ink hover:bg-blush-soft"
+              className="group mt-8 inline-flex items-center gap-2 rounded-full bg-cream px-7 py-3.5 text-[11px] uppercase tracking-[0.3em] text-ink transition-all duration-500 hover:-translate-y-0.5 hover:bg-blush-soft hover:shadow-luxe"
             >
-              Reserve a seat <ArrowRight className="h-4 w-4" />
+              Reserve a seat <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
-        </div>
+        </Reveal>
       </section>
     </Layout>
   );
