@@ -2,13 +2,13 @@ import { inr, type Product } from "@/lib/products";
 
 export function ProductCard({ p }: { p: Product }) {
   return (
-    <article className="group">
+    <article className="group cursor-pointer transition-transform duration-500 hover:-translate-y-1">
       <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-blush-soft/40">
         <img
           src={p.image}
           alt={p.name}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
         />
         {p.tag && (
           <span className="absolute left-3 top-3 rounded-full bg-cream/90 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-rose">
