@@ -8,7 +8,7 @@ export function ProductCard({ p }: { p: Product }) {
           src={p.image}
           alt={p.name}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
         />
         {p.tag && (
           <span className="absolute left-3 top-3 rounded-full bg-cream/90 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-rose">
