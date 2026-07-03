@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/site/Layout";
 import { Heart, Star, Sparkles, ShieldCheck, Award } from "lucide-react";
+import founderPhoto from "@/assets/founder-ruchi.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -21,7 +22,12 @@ function About() {
         style={{ backgroundImage: 'linear-gradient(rgba(245, 230, 227, 0.8), rgba(245, 230, 227, 0.95)), url("https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1600&q=80")' }}
       >
         <div className="mx-auto max-w-4xl px-6 text-center sm:px-10">
-          <p className="eyebrow">Our Story</p>
+          <img
+            src={founderPhoto}
+            alt="Ruchi Kakani - Founder of Manivi Creations"
+            className="mx-auto h-20 w-20 rounded-full object-cover shadow-md ring-2 ring-cream ring-offset-2 ring-offset-blush-soft sm:h-24 sm:w-24"
+          />
+          <p className="eyebrow mt-4">Our Story</p>
           <h1 className="mt-4 font-display text-4xl sm:text-5xl text-ink">
             Crafting memories <span className="font-hand text-rose">that last.</span>
           </h1>
@@ -36,9 +42,9 @@ function About() {
         <div className="overflow-hidden rounded-sm border border-gold-soft/30 bg-cream shadow-luxe lg:flex">
           {/* LEFT SIDE: Image Frame & Overlays */}
           <div className="relative aspect-[4/5] w-full lg:w-1/2 bg-blush-soft/20 min-h-[500px]">
-            {/* Ruchi Kakani Portrait (Placeholder) */}
+            {/* Ruchi Kakani Portrait */}
             <img
-              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&h=1000&q=80"
+              src={founderPhoto}
               alt="Ruchi Kakani - Founder of Manivi Creations"
               className="h-full w-full object-cover p-4"
             />
@@ -112,7 +118,7 @@ function About() {
           ].map(({ icon: Icon, t, d }) => (
             <div key={t} className="space-y-3">
               <Icon className="mx-auto h-7 w-7 text-rose" />
-              <h3 className="font-display text-2xl text-ink font-medium">{t}</h3>
+              <h3 className="font-display text-4xl sm:text-5xl text-rose font-semibold tracking-tight">{t}</h3>
               <p className="text-xs text-ink/65 max-w-xs mx-auto leading-relaxed">{d}</p>
             </div>
           ))}
