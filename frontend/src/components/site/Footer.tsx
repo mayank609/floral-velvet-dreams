@@ -17,7 +17,7 @@ export function Footer() {
             Handcrafted resin & handmade home decor — custom serving trays, ocean clocks, geode coasters, and flower preservation blocks.
           </p>
           <div className="mt-5 space-y-1.5 text-xs text-ink/60">
-            <p><strong>Phones:</strong> 9982370423, 7300340423</p>
+            <p><strong>Phones:</strong> 9982370423, 7300340423, 83023 97189</p>
             <p className="leading-relaxed">
               <strong>Studio:</strong> House no A21, ward no 31, swamiyo ka mohalla near Surani bazaar, shrimadhopur, (sikar district) (rajasthan) 332715
             </p>

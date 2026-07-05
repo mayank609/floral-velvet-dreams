@@ -82,6 +82,10 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
               <p>✨ Hypoallergenic premium gold plating.</p>
               <p>🕊️ Lovingly packed & ready to gift.</p>
             </div>
+            <div className="mt-5 rounded-md bg-blush-soft/20 p-3.5 border border-gold-soft/30 text-[11px] leading-relaxed text-ink/60">
+              <span className="font-medium text-rose uppercase tracking-wider block text-[10px] mb-1">Handmade Disclaimer</span>
+              Since our creations are individually hand-crafted and utilize natural components (like real pressed flowers), final products may vary slightly in design, color, or shape, and are subject to material availability.
+            </div>
           </div>
 
           <div className="mt-8">

@@ -79,6 +79,10 @@ function Shop() {
             <ProductCard key={p.id} p={p} onClick={() => setSelectedProduct(p)} />
           ))}
         </div>
+
+        <div className="mt-16 text-center text-xs text-ink/50 italic max-w-2xl mx-auto">
+          *Note: Because our creations are individually hand-crafted and utilize natural materials (such as pressed flowers), final products may vary slightly in design or appearance and are subject to material availability.
+        </div>
       </section>
 
       <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />

@@ -69,7 +69,7 @@ export function Header() {
               <WhatsAppIcon className="h-4 w-4" />
             </a>
             <a
-              href="https://www.facebook.com/manivicreations"
+              href="https://www.facebook.com/share/1DXg9TjBac/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"

@@ -15,7 +15,7 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
   return (
     <Layout>
-      <section 
+      <section
         className="bg-cover bg-center"
         style={{ backgroundImage: 'linear-gradient(rgba(245, 230, 227, 0.8), rgba(245, 230, 227, 0.95)), url("https://images.unsplash.com/photo-1748068545388-30781f2cdbbc?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")' }}
       >
@@ -36,7 +36,7 @@ function Contact() {
           <div className="space-y-8">
             {[
               { i: Mail, t: "Email", v: "hello@manivi.co", link: "mailto:hello@manivi.co" },
-              { i: Phone, t: "Phone", v: "+91 99823 70423\n+91 73003 40423" },
+              { i: Phone, t: "Phone", v: "+91 99823 70423\n+91 73003 40423\n+91 83023 97189" },
               { i: MapPin, t: "Studio", v: "House no A21, ward no 31,\nswamiyo ka mohalla near Surani bazaar,\nshrimadhopur, (sikar district)\n(rajasthan) 332715" },
               { i: Instagram, t: "Instagram", v: "@manivi_creations", link: "https://www.instagram.com/manivi_creations?utm_source=qr&igsh=MTk1ZHpkNDE1YjZkNQ%3D%3D" },
             ].map(({ i: I, t, v, link }) => (
