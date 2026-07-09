@@ -163,7 +163,7 @@ function AdminPage() {
       const formData = new FormData();
       formData.append("image", file);
       
-      const uploadedPath = await uploadImageServer(formData);
+      const uploadedPath = await uploadImageServer({ data: formData });
       setImageUrl(uploadedPath);
     } catch (err: any) {
       console.error(err);
@@ -475,8 +475,21 @@ function AdminPage() {
                     </label>
                     {uploading && <span className="text-xs text-ink/50">Uploading...</span>}
                     {imageUrl && (
-                      <div className="h-10 w-10 overflow-hidden rounded border border-gold-soft">
-                        <img src={getProductImageUrl(imageUrl)} alt="preview" className="h-full w-full object-cover" />
+                      <div className="flex items-center gap-2">
+                        <div className="h-10 w-10 overflow-hidden rounded border border-gold-soft">
+                          <img src={getProductImageUrl(imageUrl)} alt="preview" className="h-full w-full object-cover" />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setImageUrl("");
+                            setImageFile(null);
+                          }}
+                          className="rounded-full p-1.5 text-ink/60 hover:bg-rose/10 hover:text-rose transition-colors"
+                          title="Remove Image"
+                        >
+                          <Trash2 className="h-3.5 w-3.5" />
+                        </button>
                       </div>
                     )}
                   </div>

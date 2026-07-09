@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Mail, Heart } from "lucide-react";
+import { Instagram, Mail, Heart, Facebook, Phone } from "lucide-react";
 
 export function Footer() {
   return (
@@ -56,20 +56,44 @@ export function Footer() {
               <Mail className="h-4 w-4" />
             </button>
           </form>
-          <a
-            href="https://www.instagram.com/manivi_creations?utm_source=qr&igsh=MTk1ZHpkNDE1YjZkNQ%3D%3D"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 text-sm text-ink/70 hover:text-rose"
-          >
-            <Instagram className="h-4 w-4" /> @manivi_creations
-          </a>
+          <div className="mt-5 flex flex-col gap-2.5">
+            <a
+              href="https://www.instagram.com/manivi_creations?utm_source=qr&igsh=MTk1ZHpkNDE1YjZkNQ%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-ink/70 hover:text-rose transition-colors"
+            >
+              <Instagram className="h-4 w-4" /> @manivi_creations
+            </a>
+            <a
+              href="https://facebook.com/manivi_creations"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-ink/70 hover:text-rose transition-colors"
+            >
+              <Facebook className="h-4 w-4" /> Facebook
+            </a>
+            <a
+              href="mailto:hello@manivi.co"
+              className="inline-flex items-center gap-2 text-sm text-ink/70 hover:text-rose transition-colors"
+            >
+              <Mail className="h-4 w-4" /> hello@manivi.co
+            </a>
+            <a
+              href="https://wa.me/919982370423"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-ink/70 hover:text-rose transition-colors"
+            >
+              <Phone className="h-4 w-4" /> WhatsApp / Call
+            </a>
+          </div>
         </div>
       </div>
 
       <div className="border-t border-gold-soft/40">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-5 text-xs text-ink/60 sm:flex-row">
-          <p>© {new Date().getFullYear()} Manivi Creation. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Manivi Creation. All rights reserved. | Made by Infosphere Tech solution</p>
           <p className="inline-flex items-center gap-1.5">Handmade with <Heart className="h-3 w-3 fill-rose text-rose" /> in India</p>
         </div>
       </div>

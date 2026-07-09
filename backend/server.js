@@ -110,17 +110,31 @@ app.post("/api/products", async (req, res) => {
   }
 });
 
-// 3. Delete product by ID
+// 3. Delete product by ID (cleans up associated MongoDB images as well)
 app.delete("/api/products/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    const result = await products.deleteOne({ id });
-    if (result.deletedCount === 0) {
+    const product = await products.findOne({ id });
+    if (!product) {
       return res.status(404).json({ error: "Product not found" });
     }
+
+    // Clean up local image from MongoDB if it matches /images/:id
+    if (product.image && product.image.startsWith("/images/")) {
+      const imageIdStr = product.image.replace("/images/", "");
+      try {
+        await images.deleteOne({ _id: new ObjectId(imageIdStr) });
+        console.log(`Deleted associated image ${imageIdStr} from MongoDB`);
+      } catch (imgErr) {
+        console.error(`Failed to delete associated image ${imageIdStr}:`, imgErr);
+      }
+    }
+
+    const result = await products.deleteOne({ id });
     res.json({ success: true });
   } catch (err) {
+    console.error("Failed to delete product:", err);
     res.status(500).json({ error: "Failed to delete product" });
   }
 });

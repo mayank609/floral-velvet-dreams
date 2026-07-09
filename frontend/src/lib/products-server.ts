@@ -71,9 +71,19 @@ export const verifyPasswordServer = createServerFn({ method: "POST" })
   });
 
 export const uploadImageServer = createServerFn({ method: "POST" })
-  .handler(async ({ request }) => {
+  .handler(async ({ data }) => {
     try {
-      const formData = await request.formData();
+      if (!data || typeof data.get !== "function") {
+        throw new Error("Invalid request data: Expected FormData");
+      }
+      const file = data.get("image") as File | null;
+      if (!file) {
+        throw new Error("No image file provided in form data");
+      }
+
+      const formData = new FormData();
+      formData.append("image", file, file.name);
+
       const res = await fetch(`${BACKEND_API_URL}/api/upload`, {
         method: "POST",
         body: formData,
