@@ -165,8 +165,9 @@ function AdminPage() {
       
       const uploadedPath = await uploadImageServer(formData);
       setImageUrl(uploadedPath);
-    } catch (err) {
-      alert("Image upload failed. Please try again.");
+    } catch (err: any) {
+      console.error(err);
+      alert(`Image upload failed: ${err?.message || "Unknown error"}. Please make sure your backend server is running and configured correctly.`);
     } finally {
       setUploading(false);
     }
