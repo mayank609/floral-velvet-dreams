@@ -135,13 +135,83 @@ app.post("/api/verify-password", (req, res) => {
   }
 });
 
-// 5. Image upload handler — stores the file in MongoDB and returns a
-// /images/:id URL that route 6 below serves back out.
+// 5. Image upload handler — uploads to ImgBB/Imgur if credentials exist, otherwise falls back to storing in MongoDB.
 app.post("/api/upload", upload.single("image"), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "No image file provided" });
   }
+
+  // 1. Try ImgBB if key is present
+  if (process.env.IMGBB_API_KEY) {
+    try {
+      console.log("Uploading image to ImgBB...");
+      const base64Image = req.file.buffer.toString("base64");
+      const params = new URLSearchParams();
+      params.append("image", base64Image);
+
+      const response = await fetch(`https://api.imgbb.com/1/upload?key=${process.env.IMGBB_API_KEY}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: params,
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`ImgBB API responded with ${response.status}: ${errorText}`);
+      }
+
+      const body = await response.json();
+      if (body && body.success && body.data && body.data.url) {
+        console.log("Uploaded successfully to ImgBB:", body.data.url);
+        return res.json({ path: body.data.url });
+      } else {
+        throw new Error("ImgBB API response did not indicate success or missing URL");
+      }
+    } catch (err) {
+      console.error("ImgBB upload failed, falling back to other methods:", err);
+    }
+  }
+
+  // 2. Try Imgur if client ID is present
+  if (process.env.IMGUR_CLIENT_ID) {
+    try {
+      console.log("Uploading image to Imgur...");
+      const base64Image = req.file.buffer.toString("base64");
+      
+      const formData = new FormData();
+      formData.append("image", base64Image);
+      formData.append("type", "base64");
+
+      const response = await fetch("https://api.imgur.com/3/image", {
+        method: "POST",
+        headers: {
+          Authorization: `Client-ID ${process.env.IMGUR_CLIENT_ID}`,
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Imgur API responded with ${response.status}: ${errorText}`);
+      }
+
+      const body = await response.json();
+      if (body && body.success && body.data && body.data.link) {
+        console.log("Uploaded successfully to Imgur:", body.data.link);
+        return res.json({ path: body.data.link });
+      } else {
+        throw new Error("Imgur API response did not indicate success or missing link");
+      }
+    } catch (err) {
+      console.error("Imgur upload failed, falling back to other methods:", err);
+    }
+  }
+
+  // 3. Fallback: Store in MongoDB
   try {
+    console.log("No external upload credentials provided or upload failed. Storing image in MongoDB...");
     const result = await images.insertOne({
       contentType: req.file.mimetype,
       data: req.file.buffer,
@@ -149,6 +219,7 @@ app.post("/api/upload", upload.single("image"), async (req, res) => {
     });
     res.json({ path: `/images/${result.insertedId}` });
   } catch (err) {
+    console.error("Failed to store image in MongoDB:", err);
     res.status(500).json({ error: "Failed to store image" });
   }
 });
