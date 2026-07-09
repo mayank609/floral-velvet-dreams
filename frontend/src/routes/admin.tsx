@@ -163,7 +163,7 @@ function AdminPage() {
       const formData = new FormData();
       formData.append("image", file);
       
-      const uploadedPath = await uploadImageServer({ data: formData });
+      const uploadedPath = await uploadImageServer(formData);
       setImageUrl(uploadedPath);
     } catch (err) {
       alert("Image upload failed. Please try again.");
