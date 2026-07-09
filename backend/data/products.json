@@ -65,5 +65,530 @@
     "category": "Resin",
     "image": "/uploads/product-1.jpg",
     "description": "A subtle and lovely band ring embedded with tiny wildflowers and gold foil flakes."
+  },
+  {
+    "id": "forever-vows-classic-frame",
+    "name": "Forever Vows Classic Frame",
+    "price": 4999,
+    "category": "Wedding Preservation",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Forever Vows\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "forever-vows-premium-frame",
+    "name": "Forever Vows Premium Frame",
+    "price": 6999,
+    "category": "Wedding Preservation",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Forever Vows\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components.",
+    "originalPrice": 7499,
+    "tag": "Sale"
+  },
+  {
+    "id": "forever-vows-royal-frame",
+    "name": "Forever Vows Royal Frame",
+    "price": 10999,
+    "category": "Wedding Preservation",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Forever Vows\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components.",
+    "originalPrice": 11999,
+    "tag": "Sale"
+  },
+  {
+    "id": "forever-vows-grand-frame",
+    "name": "Forever Vows Grand Frame",
+    "price": 14999,
+    "category": "Wedding Preservation",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Forever Vows\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components.",
+    "originalPrice": 15999,
+    "tag": "Sale"
+  },
+  {
+    "id": "forever-vows-luxe-frame",
+    "name": "Forever Vows Luxe Frame",
+    "price": 22999,
+    "category": "Wedding Preservation",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Forever Vows\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components.",
+    "originalPrice": 24999,
+    "tag": "Sale"
+  },
+  {
+    "id": "forever-vows-mini-keepsake",
+    "name": "Forever Vows Mini Keepsake",
+    "price": 2499,
+    "category": "Wedding Preservation",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Forever Vows\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "forever-vows-floral-circle",
+    "name": "Forever Vows Floral Circle",
+    "price": 6499,
+    "category": "Wedding Preservation",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Forever Vows\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "forever-vows-heart-edition",
+    "name": "Forever Vows Heart Edition",
+    "price": 7499,
+    "category": "Wedding Preservation",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Forever Vows\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "forever-vows-signature-frame",
+    "name": "Forever Vows Signature Frame",
+    "price": 15999,
+    "category": "Wedding Preservation",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Forever Vows\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "forever-vows-heirloom-collection",
+    "name": "Forever Vows Heirloom Collection",
+    "price": 19999,
+    "category": "Wedding Preservation",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Forever Vows\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "everframe-classic",
+    "name": "EverFrame Classic",
+    "price": 1999,
+    "category": "Resin Photo Frames",
+    "image": "/uploads/product-2.jpg",
+    "description": "Part of the exclusive \"EverFrame\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "everframe-floral",
+    "name": "EverFrame Floral",
+    "price": 2999,
+    "category": "Resin Photo Frames",
+    "image": "/uploads/product-2.jpg",
+    "description": "Part of the exclusive \"EverFrame\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "everframe-ocean",
+    "name": "EverFrame Ocean",
+    "price": 3499,
+    "category": "Resin Photo Frames",
+    "image": "/uploads/product-2.jpg",
+    "description": "Part of the exclusive \"EverFrame\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "everframe-golden-leaf",
+    "name": "EverFrame Golden Leaf",
+    "price": 3999,
+    "category": "Resin Photo Frames",
+    "image": "/uploads/product-2.jpg",
+    "description": "Part of the exclusive \"EverFrame\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "everframe-galaxy",
+    "name": "EverFrame Galaxy",
+    "price": 4499,
+    "category": "Resin Photo Frames",
+    "image": "/uploads/product-2.jpg",
+    "description": "Part of the exclusive \"EverFrame\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "everframe-crystal",
+    "name": "EverFrame Crystal",
+    "price": 5499,
+    "category": "Resin Photo Frames",
+    "image": "/uploads/product-2.jpg",
+    "description": "Part of the exclusive \"EverFrame\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "everframe-heritage",
+    "name": "EverFrame Heritage",
+    "price": 6999,
+    "category": "Resin Photo Frames",
+    "image": "/uploads/product-2.jpg",
+    "description": "Part of the exclusive \"EverFrame\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "everframe-luxe-portrait",
+    "name": "EverFrame Luxe Portrait",
+    "price": 8999,
+    "category": "Resin Photo Frames",
+    "image": "/uploads/product-2.jpg",
+    "description": "Part of the exclusive \"EverFrame\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "memory-drop-initial",
+    "name": "Memory Drop Initial",
+    "price": 299,
+    "category": "Keychains",
+    "image": "/uploads/product-3.jpg",
+    "description": "Part of the exclusive \"Memory Drops\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "memory-drop-floral",
+    "name": "Memory Drop Floral",
+    "price": 399,
+    "category": "Keychains",
+    "image": "/uploads/product-3.jpg",
+    "description": "Part of the exclusive \"Memory Drops\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "memory-drop-letter",
+    "name": "Memory Drop Letter",
+    "price": 349,
+    "category": "Keychains",
+    "image": "/uploads/product-3.jpg",
+    "description": "Part of the exclusive \"Memory Drops\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "memory-drop-pet-paw",
+    "name": "Memory Drop Pet Paw",
+    "price": 499,
+    "category": "Keychains",
+    "image": "/uploads/product-3.jpg",
+    "description": "Part of the exclusive \"Memory Drops\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "memory-drop-couple",
+    "name": "Memory Drop Couple",
+    "price": 599,
+    "category": "Keychains",
+    "image": "/uploads/product-3.jpg",
+    "description": "Part of the exclusive \"Memory Drops\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "memory-drop-wedding",
+    "name": "Memory Drop Wedding",
+    "price": 699,
+    "category": "Keychains",
+    "image": "/uploads/product-3.jpg",
+    "description": "Part of the exclusive \"Memory Drops\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "memory-drop-baby",
+    "name": "Memory Drop Baby",
+    "price": 499,
+    "category": "Keychains",
+    "image": "/uploads/product-3.jpg",
+    "description": "Part of the exclusive \"Memory Drops\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "memory-drop-ocean",
+    "name": "Memory Drop Ocean",
+    "price": 549,
+    "category": "Keychains",
+    "image": "/uploads/product-3.jpg",
+    "description": "Part of the exclusive \"Memory Drops\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "memory-drop-zodiac",
+    "name": "Memory Drop Zodiac",
+    "price": 599,
+    "category": "Keychains",
+    "image": "/uploads/product-3.jpg",
+    "description": "Part of the exclusive \"Memory Drops\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "memory-drop-photo-charm",
+    "name": "Memory Drop Photo Charm",
+    "price": 999,
+    "category": "Keychains",
+    "image": "/uploads/product-3.jpg",
+    "description": "Part of the exclusive \"Memory Drops\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "petal-promise-ring-holder",
+    "name": "Petal Promise Ring Holder",
+    "price": 799,
+    "category": "Ring Holders",
+    "image": "/uploads/product-4.jpg",
+    "description": "Part of the exclusive \"Petal Promise\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "petal-promise-duo",
+    "name": "Petal Promise Duo",
+    "price": 1299,
+    "category": "Ring Holders",
+    "image": "/uploads/product-4.jpg",
+    "description": "Part of the exclusive \"Petal Promise\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "petal-promise-forever",
+    "name": "Petal Promise Forever",
+    "price": 1999,
+    "category": "Ring Holders",
+    "image": "/uploads/product-4.jpg",
+    "description": "Part of the exclusive \"Petal Promise\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "petal-promise-floral",
+    "name": "Petal Promise Floral",
+    "price": 1499,
+    "category": "Ring Holders",
+    "image": "/uploads/product-4.jpg",
+    "description": "Part of the exclusive \"Petal Promise\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "petal-promise-crystal",
+    "name": "Petal Promise Crystal",
+    "price": 2499,
+    "category": "Ring Holders",
+    "image": "/uploads/product-4.jpg",
+    "description": "Part of the exclusive \"Petal Promise\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "bloom-aura-petal-earrings",
+    "name": "Bloom Aura Petal Earrings",
+    "price": 599,
+    "category": "Jewellery",
+    "image": "/uploads/cat-jewellery.jpg",
+    "description": "Part of the exclusive \"Bloom Aura\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "bloom-aura-blossom-pendant",
+    "name": "Bloom Aura Blossom Pendant",
+    "price": 699,
+    "category": "Jewellery",
+    "image": "/uploads/cat-jewellery.jpg",
+    "description": "Part of the exclusive \"Bloom Aura\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "bloom-aura-grace-bracelet",
+    "name": "Bloom Aura Grace Bracelet",
+    "price": 799,
+    "category": "Jewellery",
+    "image": "/uploads/cat-jewellery.jpg",
+    "description": "Part of the exclusive \"Bloom Aura\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "bloom-aura-signature-necklace",
+    "name": "Bloom Aura Signature Necklace",
+    "price": 1499,
+    "category": "Jewellery",
+    "image": "/uploads/cat-jewellery.jpg",
+    "description": "Part of the exclusive \"Bloom Aura\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "bloom-aura-harmony-gift-set",
+    "name": "Bloom Aura Harmony Gift Set",
+    "price": 2499,
+    "category": "Jewellery",
+    "image": "/uploads/cat-jewellery.jpg",
+    "description": "Part of the exclusive \"Bloom Aura\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "ocean-whisper-coastal-tray",
+    "name": "Ocean Whisper Coastal Tray",
+    "price": 2299,
+    "category": "Resin Trays",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Ocean Whisper\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "ocean-whisper-luxe-tray-set",
+    "name": "Ocean Whisper Luxe Tray Set",
+    "price": 4999,
+    "category": "Resin Trays",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Ocean Whisper\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "ocean-whisper-wave-coaster-set",
+    "name": "Ocean Whisper Wave Coaster Set",
+    "price": 999,
+    "category": "Coasters",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Ocean Whisper\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "ocean-whisper-cheese-board",
+    "name": "Ocean Whisper Cheese & Charcuterie Board",
+    "price": 2799,
+    "category": "Boards",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Ocean Whisper\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "ocean-whisper-luxury-table-top",
+    "name": "Ocean Whisper Luxury Table Top",
+    "price": 12999,
+    "category": "Table Tops",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Ocean Whisper\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "ocean-whisper-lazy-susan",
+    "name": "Ocean Whisper Lazy Susan",
+    "price": 3999,
+    "category": "Lazy Susan",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of the exclusive \"Ocean Whisper\" collection. Individually hand-crafted with meticulous detail, real pressed botanical flowers and premium components."
+  },
+  {
+    "id": "vrindavan-mini-jhula",
+    "name": "Vrindavan Mini Jhula",
+    "price": 599,
+    "category": "Divine Collection",
+    "image": "/uploads/product-1.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: 0-4 No. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "vrindavan-royal-swing",
+    "name": "Vrindavan Royal Swing",
+    "price": 1799,
+    "category": "Divine Collection",
+    "image": "/uploads/product-1.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: 18 No. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "vrindavan-royal-pedestal-mini",
+    "name": "Vrindavan Royal Pedestal - Mini",
+    "price": 899,
+    "category": "Royal Pedestal",
+    "image": "/uploads/product-1.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Mini. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "vrindavan-royal-pedestal-medium",
+    "name": "Vrindavan Royal Pedestal - Medium",
+    "price": 999,
+    "category": "Royal Pedestal",
+    "image": "/uploads/product-1.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Medium. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "vrindavan-royal-pedestal-large",
+    "name": "Vrindavan Royal Pedestal - Large",
+    "price": 1899,
+    "category": "Royal Pedestal",
+    "image": "/uploads/product-1.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Large. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "heritage-desk-organizer",
+    "name": "Heritage Desk Organizer",
+    "price": 699,
+    "category": "Desk Decor",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Double. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "heritage-mini-timepiece",
+    "name": "Heritage Mini Timepiece",
+    "price": 1199,
+    "priceLabel": "₹1,199 - ₹1,999",
+    "category": "Timepiece",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Mini. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "heritage-signature-timepiece",
+    "name": "Heritage Signature Timepiece",
+    "price": 2199,
+    "priceLabel": "₹2,199 - ₹3,299",
+    "category": "Timepiece",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Medium. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "heritage-grand-timepiece",
+    "name": "Heritage Grand Timepiece",
+    "price": 3799,
+    "priceLabel": "₹3,799 onwards",
+    "category": "Timepiece",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Large. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "sacred-wooden-shubh-labh",
+    "name": "Sacred Wooden Shubh Labh",
+    "price": 349,
+    "priceLabel": "₹349 onwards",
+    "category": "Entrance Decor",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Various. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "heritage-entrance-toran",
+    "name": "Heritage Entrance Toran",
+    "price": 999,
+    "priceLabel": "₹999 onwards",
+    "category": "Entrance Decor",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Various. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "heritage-wooden-rangoli",
+    "name": "Heritage Wooden Rangoli",
+    "price": 999,
+    "priceLabel": "₹999 onwards",
+    "category": "Festive Decor",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Various. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "heritage-tissue-holder",
+    "name": "Heritage Tissue Holder",
+    "price": 999,
+    "priceLabel": "₹999 onwards",
+    "category": "Home Decor",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Standard. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "heritage-serving-tray-set",
+    "name": "Heritage Serving Tray Set",
+    "price": 1199,
+    "priceLabel": "₹1,199 onwards",
+    "category": "Serveware",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Set of 3. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "heritage-serving-table",
+    "name": "Heritage Serving Table",
+    "price": 4999,
+    "priceLabel": "₹4,999 onwards",
+    "category": "Furniture",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Custom. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "heritage-wooden-name-plaque",
+    "name": "Heritage Wooden Name Plaque",
+    "price": 499,
+    "priceLabel": "₹499 onwards",
+    "category": "Name Plates",
+    "image": "/uploads/cat-clay.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Custom. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "heritage-memory-frame",
+    "name": "Heritage Memory Frame",
+    "price": 699,
+    "priceLabel": "₹699 onwards",
+    "category": "Frames",
+    "image": "/uploads/product-2.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Custom. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "eternal-engraved-memory-frame",
+    "name": "Eternal Engraved Memory Frame",
+    "price": 699,
+    "priceLabel": "₹699 onwards",
+    "category": "Frames",
+    "image": "/uploads/product-2.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Custom. In stock: Yes. Beautifully handcrafted with premium components."
+  },
+  {
+    "id": "heritage-wooden-coaster-collection",
+    "name": "Heritage Wooden Coaster Collection",
+    "price": 399,
+    "priceLabel": "₹399 onwards",
+    "category": "Table Decor",
+    "image": "/uploads/cat-resin.jpg",
+    "description": "Part of our Heritage and Divine craft. Size/Variant: Set. In stock: Yes. Beautifully handcrafted with premium components."
   }
 ]

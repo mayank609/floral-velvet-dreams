@@ -67,9 +67,16 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
             <h2 className="mt-2 font-display text-3xl text-ink leading-tight sm:text-4xl">
               {product.name}
             </h2>
-            <p className="mt-3 font-display text-2xl text-rose font-medium">
-              {product.priceLabel || inr(product.price)}
-            </p>
+            <div className="mt-3 flex items-baseline gap-3">
+              <span className="font-display text-2xl text-rose font-medium">
+                {product.priceLabel || inr(product.price)}
+              </span>
+              {product.originalPrice && product.originalPrice > product.price && (
+                <span className="text-sm text-ink/40 line-through font-medium">
+                  {inr(product.originalPrice)}
+                </span>
+              )}
+            </div>
             <div className="mt-6 border-t border-gold-soft/40 pt-5">
               <h4 className="eyebrow !text-ink/60 mb-2">Description</h4>
               <p className="text-sm leading-relaxed text-ink/75">

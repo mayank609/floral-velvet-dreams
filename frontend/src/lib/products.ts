@@ -15,12 +15,35 @@ export type Category =
   | "Varmala Preservation"
   | "Resin Home Decor"
   | "Clay Decor"
-  | "Gift Hampers";
+  | "Gift Hampers"
+  | "Resin"
+  | "Clay"
+  | "Jewellery"
+  | "Wedding Preservation"
+  | "Ring Holders"
+  | "Resin Trays"
+  | "Coasters"
+  | "Boards"
+  | "Table Tops"
+  | "Lazy Susan"
+  | "Divine Collection"
+  | "Royal Pedestal"
+  | "Desk Decor"
+  | "Timepiece"
+  | "Entrance Decor"
+  | "Festive Decor"
+  | "Home Decor"
+  | "Serveware"
+  | "Furniture"
+  | "Name Plates"
+  | "Frames"
+  | "Table Decor";
 
 export type Product = {
   id: string;
   name: string;
   price: number;
+  originalPrice?: number;
   /** Overrides the plain `inr(price)` display when the price is a range or "onwards"/"varies" text. */
   priceLabel?: string;
   category: Category;

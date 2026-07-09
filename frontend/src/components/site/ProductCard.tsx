@@ -32,7 +32,12 @@ export function ProductCard({ p, onClick }: ProductCardProps) {
           <p className="text-[10px] uppercase tracking-[0.25em] text-ink/50">{p.category}</p>
           <h3 className="mt-1 font-display text-lg leading-tight">{p.name}</h3>
         </div>
-        <p className="text-right font-display text-lg text-rose">{p.priceLabel || inr(p.price)}</p>
+        <div className="text-right">
+          <p className="font-display text-lg text-rose">{p.priceLabel || inr(p.price)}</p>
+          {p.originalPrice && p.originalPrice > p.price && (
+            <p className="text-xs text-ink/40 line-through mt-0.5">{inr(p.originalPrice)}</p>
+          )}
+        </div>
       </div>
     </article>
   );
