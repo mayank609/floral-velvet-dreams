@@ -6,38 +6,9 @@ import resin from "@/assets/cat-resin.jpg";
 import clay from "@/assets/cat-clay.jpg";
 import jewel from "@/assets/cat-jewellery.jpg";
 
-export type Category =
-  | "Kanha Ji Jhula"
-  | "Palki"
-  | "Pooja Thali"
-  | "Resin Photo Frames"
-  | "Keychains"
-  | "Varmala Preservation"
-  | "Resin Home Decor"
-  | "Clay Decor"
-  | "Gift Hampers"
-  | "Resin"
-  | "Clay"
-  | "Jewellery"
-  | "Wedding Preservation"
-  | "Ring Holders"
-  | "Resin Trays"
-  | "Coasters"
-  | "Boards"
-  | "Table Tops"
-  | "Lazy Susan"
-  | "Divine Collection"
-  | "Royal Pedestal"
-  | "Desk Decor"
-  | "Timepiece"
-  | "Entrance Decor"
-  | "Festive Decor"
-  | "Home Decor"
-  | "Serveware"
-  | "Furniture"
-  | "Name Plates"
-  | "Frames"
-  | "Table Decor";
+// Categories are managed dynamically by admins (see /api/categories) rather
+// than fixed at compile time, so this is a plain string rather than a union.
+export type Category = string;
 
 export type Product = {
   id: string;

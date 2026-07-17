@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Layout } from "@/components/site/Layout";
 import { ProductCard } from "@/components/site/ProductCard";
 import { ProductModal } from "@/components/site/ProductModal";
-import { getProductsServer } from "@/lib/products-server";
+import { getProductsServer, getCategoriesServer } from "@/lib/products-server";
 import type { Product } from "@/lib/products";
 
 export const Route = createFileRoute("/shop")({
@@ -14,50 +14,15 @@ export const Route = createFileRoute("/shop")({
     ],
   }),
   loader: async () => {
-    const products = await getProductsServer();
-    return { products };
+    const [products, categories] = await Promise.all([getProductsServer(), getCategoriesServer()]);
+    return { products, categories: ["All", ...categories] };
   },
   component: Shop,
 });
 
-const categories = [
-  "All",
-  "Kanha Ji Jhula",
-  "Palki",
-  "Pooja Thali",
-  "Resin Photo Frames",
-  "Keychains",
-  "Varmala Preservation",
-  "Resin Home Decor",
-  "Clay Decor",
-  "Gift Hampers",
-  "Resin",
-  "Clay",
-  "Jewellery",
-  "Wedding Preservation",
-  "Ring Holders",
-  "Resin Trays",
-  "Coasters",
-  "Boards",
-  "Table Tops",
-  "Lazy Susan",
-  "Divine Collection",
-  "Royal Pedestal",
-  "Desk Decor",
-  "Timepiece",
-  "Entrance Decor",
-  "Festive Decor",
-  "Home Decor",
-  "Serveware",
-  "Furniture",
-  "Name Plates",
-  "Frames",
-  "Table Decor",
-] as const;
-
 function Shop() {
-  const { products } = Route.useLoaderData();
-  const [cat, setCat] = useState<(typeof categories)[number]>("All");
+  const { products, categories } = Route.useLoaderData();
+  const [cat, setCat] = useState<string>("All");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const list = cat === "All" ? products : products.filter((p) => p.category === cat);

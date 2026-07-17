@@ -52,6 +52,46 @@ export const deleteProductServer = createServerFn({ method: "POST" })
     }
   });
 
+export const getCategoriesServer = createServerFn({ method: "GET" })
+  .handler(async () => {
+    const url = `${BACKEND_API_URL}/api/categories`;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        const body = await res.text().catch(() => "");
+        throw new Error(`Failed to fetch categories: ${res.status} ${res.statusText} — ${body.slice(0, 300)}`);
+      }
+      return (await res.json()) as string[];
+    } catch (err) {
+      console.error(`Failed to fetch categories from backend at ${url}:`, err);
+      return [];
+    }
+  });
+
+export const addCategoryServer = createServerFn({ method: "POST" })
+  .validator((name: string) => name)
+  .handler(async ({ data: name }) => {
+    const res = await fetch(`${BACKEND_API_URL}/api/categories`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name }),
+    });
+    const body = await res.json().catch(() => ({}) as { error?: string; name?: string });
+    if (!res.ok) throw new Error(body.error || "Failed to add category");
+    return body as { success: boolean; name: string };
+  });
+
+export const deleteCategoryServer = createServerFn({ method: "POST" })
+  .validator((name: string) => name)
+  .handler(async ({ data: name }) => {
+    const res = await fetch(`${BACKEND_API_URL}/api/categories/${encodeURIComponent(name)}`, {
+      method: "DELETE",
+    });
+    const body = await res.json().catch(() => ({}) as { error?: string });
+    if (!res.ok) throw new Error(body.error || "Failed to delete category");
+    return body as { success: boolean };
+  });
+
 export const verifyPasswordServer = createServerFn({ method: "POST" })
   .validator((pw: string) => pw)
   .handler(async ({ data: pw }) => {

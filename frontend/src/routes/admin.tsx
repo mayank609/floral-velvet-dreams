@@ -7,42 +7,11 @@ import {
   deleteProductServer,
   uploadImageServer,
   verifyPasswordServer,
+  getCategoriesServer,
+  addCategoryServer,
+  deleteCategoryServer,
 } from "@/lib/products-server";
 import { type Product, type Category, inr, getProductImageUrl } from "@/lib/products";
-
-const CATEGORIES: Category[] = [
-  "Kanha Ji Jhula",
-  "Palki",
-  "Pooja Thali",
-  "Resin Photo Frames",
-  "Keychains",
-  "Varmala Preservation",
-  "Resin Home Decor",
-  "Clay Decor",
-  "Gift Hampers",
-  "Resin",
-  "Clay",
-  "Jewellery",
-  "Wedding Preservation",
-  "Ring Holders",
-  "Resin Trays",
-  "Coasters",
-  "Boards",
-  "Table Tops",
-  "Lazy Susan",
-  "Divine Collection",
-  "Royal Pedestal",
-  "Desk Decor",
-  "Timepiece",
-  "Entrance Decor",
-  "Festive Decor",
-  "Home Decor",
-  "Serveware",
-  "Furniture",
-  "Name Plates",
-  "Frames",
-  "Table Decor",
-];
 import {
   Plus,
   Edit2,
@@ -54,6 +23,8 @@ import {
   Sparkles,
   Lock,
   ArrowRight,
+  Tags,
+  X,
 } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
@@ -64,14 +35,14 @@ export const Route = createFileRoute("/admin")({
     ],
   }),
   loader: async () => {
-    const products = await getProductsServer();
-    return { products };
+    const [products, categories] = await Promise.all([getProductsServer(), getCategoriesServer()]);
+    return { products, categories };
   },
   component: AdminPage,
 });
 
 function AdminPage() {
-  const { products } = Route.useLoaderData();
+  const { products, categories } = Route.useLoaderData();
   const router = useRouter();
 
   // Authentication State
@@ -82,12 +53,18 @@ function AdminPage() {
   // Dashboard & Form State
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
-  
+
+  // Category Management State
+  const [isCategoryManagerOpen, setIsCategoryManagerOpen] = useState(false);
+  const [newCategoryName, setNewCategoryName] = useState("");
+  const [categoryError, setCategoryError] = useState("");
+  const [categoryBusy, setCategoryBusy] = useState(false);
+
   // Form fields
   const [name, setName] = useState("");
   const [price, setPrice] = useState(1000);
   const [priceLabel, setPriceLabel] = useState("");
-  const [category, setCategory] = useState<Category>("Kanha Ji Jhula");
+  const [category, setCategory] = useState<Category>(categories[0] || "");
   const [tag, setTag] = useState("");
   const [description, setDescription] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -130,7 +107,7 @@ function AdminPage() {
     setName("");
     setPrice(1000);
     setPriceLabel("");
-    setCategory("Kanha Ji Jhula");
+    setCategory(categories[0] || "");
     setTag("");
     setDescription("");
     setImageFile(null);
@@ -180,6 +157,10 @@ function AdminPage() {
       alert("Please upload an image first.");
       return;
     }
+    if (!category) {
+      alert("Please add a category first (use Manage Categories).");
+      return;
+    }
 
     setSubmitting(true);
     try {
@@ -215,6 +196,41 @@ function AdminPage() {
       await router.invalidate();
     } catch (err) {
       alert("Failed to delete product.");
+    }
+  };
+
+  // Handle Add Category
+  const handleAddCategory = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = newCategoryName.trim();
+    if (!trimmed) return;
+
+    setCategoryError("");
+    setCategoryBusy(true);
+    try {
+      await addCategoryServer({ data: trimmed });
+      setNewCategoryName("");
+      await router.invalidate();
+    } catch (err: any) {
+      setCategoryError(err?.message || "Failed to add category.");
+    } finally {
+      setCategoryBusy(false);
+    }
+  };
+
+  // Handle Delete Category
+  const handleDeleteCategory = async (name: string) => {
+    if (!confirm(`Delete category "${name}"?`)) return;
+
+    setCategoryError("");
+    setCategoryBusy(true);
+    try {
+      await deleteCategoryServer({ data: name });
+      await router.invalidate();
+    } catch (err: any) {
+      setCategoryError(err?.message || "Failed to delete category.");
+    } finally {
+      setCategoryBusy(false);
     }
   };
 
@@ -309,12 +325,20 @@ function AdminPage() {
         {/* CONTROLS */}
         <div className="mt-12 flex items-center justify-between">
           <h2 className="font-display text-2xl text-ink">Showcase Items</h2>
-          <button
-            onClick={openAddForm}
-            className="flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[10px] uppercase tracking-[0.25em] text-cream hover:bg-rose transition-all duration-300 shadow-md hover:-translate-y-0.5"
-          >
-            <Plus className="h-4 w-4" /> Add Product
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsCategoryManagerOpen(true)}
+              className="flex items-center gap-2 rounded-full border border-ink/20 px-6 py-3 text-[10px] uppercase tracking-[0.25em] text-ink/70 hover:border-rose hover:text-rose transition-colors"
+            >
+              <Tags className="h-4 w-4" /> Manage Categories
+            </button>
+            <button
+              onClick={openAddForm}
+              className="flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-[10px] uppercase tracking-[0.25em] text-cream hover:bg-rose transition-all duration-300 shadow-md hover:-translate-y-0.5"
+            >
+              <Plus className="h-4 w-4" /> Add Product
+            </button>
+          </div>
         </div>
 
         {/* PRODUCTS TABLE */}
@@ -417,7 +441,8 @@ function AdminPage() {
                     onChange={(e) => setCategory(e.target.value as Category)}
                     className="mt-2 w-full border-b border-ink/30 bg-transparent py-2 text-sm outline-none focus:border-rose"
                   >
-                    {CATEGORIES.map((c) => (
+                    {categories.length === 0 && <option value="">No categories yet</option>}
+                    {categories.map((c) => (
                       <option key={c} value={c}>{c}</option>
                     ))}
                   </select>
@@ -524,6 +549,62 @@ function AdminPage() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* CATEGORY MANAGER MODAL */}
+      {isCategoryManagerOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/40 backdrop-blur-sm animate-fade-in">
+          <div className="absolute inset-0" onClick={() => setIsCategoryManagerOpen(false)} />
+          <div className="relative w-full max-w-md rounded-sm bg-cream p-6 sm:p-8 shadow-2xl animate-zoom-in border border-gold-soft/30 max-h-[85vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="font-display text-2xl text-ink">Manage Categories</h3>
+              <button
+                onClick={() => setIsCategoryManagerOpen(false)}
+                className="rounded-full p-1.5 text-ink/50 hover:bg-blush-soft hover:text-rose transition-colors"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleAddCategory} className="flex gap-2">
+              <input
+                type="text"
+                value={newCategoryName}
+                onChange={(e) => setNewCategoryName(e.target.value)}
+                placeholder="New category name"
+                className="flex-1 border-b border-ink/30 bg-transparent py-2 text-sm outline-none focus:border-rose"
+              />
+              <button
+                type="submit"
+                disabled={categoryBusy || !newCategoryName.trim()}
+                className="flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-[10px] uppercase tracking-widest text-cream hover:bg-rose disabled:opacity-50 transition-colors"
+              >
+                <Plus className="h-3.5 w-3.5" /> Add
+              </button>
+            </form>
+            {categoryError && <p className="mt-2 text-xs text-rose">{categoryError}</p>}
+
+            <ul className="mt-6 divide-y divide-gold-soft/20 border-t border-gold-soft/20">
+              {categories.length === 0 ? (
+                <li className="py-6 text-center text-sm text-ink/40">No categories yet.</li>
+              ) : (
+                categories.map((c) => (
+                  <li key={c} className="flex items-center justify-between py-2.5">
+                    <span className="text-sm text-ink/80">{c}</span>
+                    <button
+                      onClick={() => handleDeleteCategory(c)}
+                      disabled={categoryBusy}
+                      className="rounded-full p-1.5 text-ink/50 hover:bg-rose/10 hover:text-rose transition-colors disabled:opacity-50"
+                      title="Delete Category"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </button>
+                  </li>
+                ))
+              )}
+            </ul>
           </div>
         </div>
       )}

@@ -34,15 +34,63 @@ const legacyDbPath = path.join(__dirname, "data", "products.json");
 const client = new MongoClient(MONGODB_URI);
 let products;
 let images;
+let categories;
+
+// Seeded once on first run so existing category options aren't lost when
+// switching category management from a hardcoded list to the database.
+const DEFAULT_CATEGORIES = [
+  "Kanha Ji Jhula",
+  "Palki",
+  "Pooja Thali",
+  "Resin Photo Frames",
+  "Keychains",
+  "Varmala Preservation",
+  "Resin Home Decor",
+  "Clay Decor",
+  "Gift Hampers",
+  "Resin",
+  "Clay",
+  "Jewellery",
+  "Wedding Preservation",
+  "Ring Holders",
+  "Resin Trays",
+  "Coasters",
+  "Boards",
+  "Table Tops",
+  "Lazy Susan",
+  "Divine Collection",
+  "Royal Pedestal",
+  "Desk Decor",
+  "Timepiece",
+  "Entrance Decor",
+  "Festive Decor",
+  "Home Decor",
+  "Serveware",
+  "Furniture",
+  "Name Plates",
+  "Frames",
+  "Table Decor",
+];
 
 async function connectDb() {
   await client.connect();
   const db = client.db(MONGODB_DB_NAME);
   products = db.collection("products");
   images = db.collection("images");
+  categories = db.collection("categories");
   await products.createIndex({ id: 1 }, { unique: true });
+  await categories.createIndex({ name: 1 }, { unique: true });
   console.log(`Connected to MongoDB database "${MONGODB_DB_NAME}"`);
   await seedFromLegacyFile();
+  await seedDefaultCategories();
+}
+
+async function seedDefaultCategories() {
+  const count = await categories.countDocuments();
+  if (count > 0) return;
+
+  await categories.insertMany(DEFAULT_CATEGORIES.map((name, order) => ({ name, order })));
+  console.log(`Seeded ${DEFAULT_CATEGORIES.length} default categories`);
 }
 
 // One-time migration: if the products collection is empty and the old
@@ -136,6 +184,60 @@ app.delete("/api/products/:id", async (req, res) => {
   } catch (err) {
     console.error("Failed to delete product:", err);
     res.status(500).json({ error: "Failed to delete product" });
+  }
+});
+
+// 3b. Get all categories, in display order
+app.get("/api/categories", async (req, res) => {
+  try {
+    const list = await categories.find({}, { projection: { _id: 0, name: 1 } }).sort({ order: 1 }).toArray();
+    res.json(list.map((c) => c.name));
+  } catch (err) {
+    res.status(500).json({ error: "Failed to read categories" });
+  }
+});
+
+// 3c. Add a new category
+app.post("/api/categories", async (req, res) => {
+  const name = req.body?.name?.trim();
+  if (!name) {
+    return res.status(400).json({ error: "Category name is required" });
+  }
+
+  try {
+    const existing = await categories.findOne({ name });
+    if (existing) {
+      return res.status(409).json({ error: "Category already exists" });
+    }
+
+    const [last] = await categories.find().sort({ order: -1 }).limit(1).toArray();
+    const order = last ? last.order + 1 : 0;
+    await categories.insertOne({ name, order });
+    res.json({ success: true, name });
+  } catch (err) {
+    console.error("Failed to add category:", err);
+    res.status(500).json({ error: "Failed to add category" });
+  }
+});
+
+// 3d. Delete a category (blocked while any product still references it)
+app.delete("/api/categories/:name", async (req, res) => {
+  const name = decodeURIComponent(req.params.name);
+
+  try {
+    const inUseCount = await products.countDocuments({ category: name });
+    if (inUseCount > 0) {
+      return res.status(409).json({ error: `Cannot delete: ${inUseCount} product(s) still use this category` });
+    }
+
+    const result = await categories.deleteOne({ name });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Failed to delete category:", err);
+    res.status(500).json({ error: "Failed to delete category" });
   }
 });
 
