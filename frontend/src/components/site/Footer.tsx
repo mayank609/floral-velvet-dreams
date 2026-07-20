@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Mail, Heart, Facebook, Phone } from "lucide-react";
+import { Instagram, Mail, Facebook, Phone } from "lucide-react";
 
 export function Footer() {
   return (
@@ -74,10 +74,10 @@ export function Footer() {
               <Facebook className="h-4 w-4" /> Facebook
             </a>
             <a
-              href="mailto:hello@manivi.co"
+              href="mailto:manivicreations.store@gmail.com"
               className="inline-flex items-center gap-2 text-sm text-ink/70 hover:text-rose transition-colors"
             >
-              <Mail className="h-4 w-4" /> hello@manivi.co
+              <Mail className="h-4 w-4" /> manivicreations.store@gmail.com
             </a>
             <a
               href="https://wa.me/919982370423"
@@ -94,7 +94,6 @@ export function Footer() {
       <div className="border-t border-gold-soft/40">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-5 text-xs text-ink/60 sm:flex-row">
           <p>© {new Date().getFullYear()} Manivi Creation. All rights reserved. | Made by Infosphere Tech solution</p>
-          <p className="inline-flex items-center gap-1.5">Handmade with <Heart className="h-3 w-3 fill-rose text-rose" /> in India</p>
         </div>
       </div>
     </footer>
