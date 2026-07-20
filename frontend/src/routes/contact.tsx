@@ -35,7 +35,7 @@ function Contact() {
         <div className="grid gap-14 md:grid-cols-[1fr_1.2fr]">
           <div className="space-y-8">
             {[
-              { i: Mail, t: "Email", v: "hello@manivi.co", link: "mailto:hello@manivi.co" },
+              { i: Mail, t: "Email", v: "manivicreations.store@gmail.com", link: "mailto:manivicreations.store@gmail.com" },
               { i: Phone, t: "Phone", v: "+91 99823 70423\n+91 73003 40423\n+91 83023 97189" },
               { i: MapPin, t: "Studio", v: "House no A21, ward no 31,\nswamiyo ka mohalla near Surani bazaar,\nshrimadhopur, (sikar district)\n(rajasthan) 332715" },
               { i: Instagram, t: "Instagram", v: "@manivi_creations", link: "https://www.instagram.com/manivi_creations?utm_source=qr&igsh=MTk1ZHpkNDE1YjZkNQ%3D%3D" },
