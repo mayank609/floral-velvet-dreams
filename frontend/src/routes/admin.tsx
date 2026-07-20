@@ -27,6 +27,39 @@ import {
   X,
 } from "lucide-react";
 
+// Phone camera photos are often 8-20MB and can exceed the backend's upload
+// limit or time out over slow connections. Downscale and re-encode to JPEG
+// client-side before upload — imageOrientation keeps portrait photos from
+// coming out sideways since raw canvas draws ignore the EXIF rotation tag.
+async function compressImageForUpload(file: File, maxDimension = 1600, quality = 0.85): Promise<File> {
+  if (!file.type.startsWith("image/") || file.type === "image/svg+xml" || file.type === "image/gif") {
+    return file;
+  }
+
+  try {
+    const bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
+    const scale = Math.min(1, maxDimension / Math.max(bitmap.width, bitmap.height));
+    const width = Math.round(bitmap.width * scale);
+    const height = Math.round(bitmap.height * scale);
+
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return file;
+    ctx.drawImage(bitmap, 0, 0, width, height);
+    bitmap.close();
+
+    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", quality));
+    if (!blob || blob.size >= file.size) return file;
+
+    return new File([blob], file.name.replace(/\.\w+$/, "") + ".jpg", { type: "image/jpeg" });
+  } catch (err) {
+    console.error("Image compression failed, uploading original file:", err);
+    return file;
+  }
+}
+
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
@@ -133,13 +166,15 @@ function AdminPage() {
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setImageFile(file);
 
     setUploading(true);
     try {
+      const uploadFile = await compressImageForUpload(file);
+      setImageFile(uploadFile);
+
       const formData = new FormData();
-      formData.append("image", file);
-      
+      formData.append("image", uploadFile);
+
       const uploadedPath = await uploadImageServer({ data: formData });
       setImageUrl(uploadedPath);
     } catch (err: any) {

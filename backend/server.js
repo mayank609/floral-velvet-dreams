@@ -119,7 +119,27 @@ app.use("/uploads", express.static(uploadDir));
 
 // Uploaded images are held in memory just long enough to write them into
 // MongoDB (see /api/upload) — nothing touches local disk at runtime.
-const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 8 * 1024 * 1024 } });
+// Kept under MongoDB's 16MB BSON document limit, since the fallback path
+// stores the raw image bytes in a Mongo document.
+const MAX_UPLOAD_BYTES = 12 * 1024 * 1024;
+const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: MAX_UPLOAD_BYTES } });
+
+// multer reports oversized/malformed uploads via an error passed to the
+// Express error-handling chain — without this wrapper that error falls
+// through to Express's default HTML error page, which breaks the
+// frontend's JSON parsing and surfaces as a confusing "upload failed".
+function handleUpload(req, res, next) {
+  upload.single("image")(req, res, (err) => {
+    if (!err) return next();
+    if (err instanceof multer.MulterError && err.code === "LIMIT_FILE_SIZE") {
+      return res.status(413).json({
+        error: `Image is too large. Please upload a photo under ${MAX_UPLOAD_BYTES / (1024 * 1024)}MB.`,
+      });
+    }
+    console.error("Upload rejected:", err);
+    return res.status(400).json({ error: err.message || "Failed to process uploaded image" });
+  });
+}
 
 // API Endpoints
 
@@ -252,7 +272,7 @@ app.post("/api/verify-password", (req, res) => {
 });
 
 // 5. Image upload handler — uploads to ImgBB/Imgur if credentials exist, otherwise falls back to storing in MongoDB.
-app.post("/api/upload", upload.single("image"), async (req, res) => {
+app.post("/api/upload", handleUpload, async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "No image file provided" });
   }
