@@ -34,7 +34,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* Modal content box */}
-      <div className="relative w-full max-w-3xl overflow-hidden rounded-md bg-cream shadow-2xl animate-zoom-in md:flex">
+      <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-md bg-cream shadow-2xl animate-zoom-in md:flex">
         {/* Close Button */}
         <button
           onClick={onClose}

@@ -111,11 +111,14 @@ export const verifyPasswordServer = createServerFn({ method: "POST" })
   });
 
 export const uploadImageServer = createServerFn({ method: "POST" })
+  .validator((data: FormData) => {
+    if (!(data instanceof FormData)) {
+      throw new Error("Invalid request data: Expected FormData");
+    }
+    return data;
+  })
   .handler(async ({ data }) => {
     try {
-      if (!data || typeof data.get !== "function") {
-        throw new Error("Invalid request data: Expected FormData");
-      }
       const file = data.get("image") as File | null;
       if (!file) {
         throw new Error("No image file provided in form data");
