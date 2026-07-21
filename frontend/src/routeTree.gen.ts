@@ -14,6 +14,8 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UploadsSplatRouteImport } from './routes/uploads/$'
+import { Route as ImagesIdRouteImport } from './routes/images/$id'
 
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
@@ -40,6 +42,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UploadsSplatRoute = UploadsSplatRouteImport.update({
+  id: '/uploads/$',
+  path: '/uploads/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImagesIdRoute = ImagesIdRouteImport.update({
+  id: '/images/$id',
+  path: '/images/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +59,8 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/shop': typeof ShopRoute
+  '/images/$id': typeof ImagesIdRoute
+  '/uploads/$': typeof UploadsSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +68,8 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/shop': typeof ShopRoute
+  '/images/$id': typeof ImagesIdRoute
+  '/uploads/$': typeof UploadsSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +78,37 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
   '/shop': typeof ShopRoute
+  '/images/$id': typeof ImagesIdRoute
+  '/uploads/$': typeof UploadsSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/admin' | '/contact' | '/shop'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/shop'
+    | '/images/$id'
+    | '/uploads/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/admin' | '/contact' | '/shop'
-  id: '__root__' | '/' | '/about' | '/admin' | '/contact' | '/shop'
+  to:
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/shop'
+    | '/images/$id'
+    | '/uploads/$'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/contact'
+    | '/shop'
+    | '/images/$id'
+    | '/uploads/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +117,8 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
   ShopRoute: typeof ShopRoute
+  ImagesIdRoute: typeof ImagesIdRoute
+  UploadsSplatRoute: typeof UploadsSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +158,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uploads/$': {
+      id: '/uploads/$'
+      path: '/uploads/$'
+      fullPath: '/uploads/$'
+      preLoaderRoute: typeof UploadsSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/images/$id': {
+      id: '/images/$id'
+      path: '/images/$id'
+      fullPath: '/images/$id'
+      preLoaderRoute: typeof ImagesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +181,8 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
   ShopRoute: ShopRoute,
+  ImagesIdRoute: ImagesIdRoute,
+  UploadsSplatRoute: UploadsSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
