@@ -30,13 +30,11 @@ export const products: Product[] = [
 
 export const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_API_URL || "http://localhost:3001";
-
+// /uploads/... and /images/:id paths are proxied same-origin through
+// src/routes/uploads/$.ts and src/routes/images/$id.ts, so they're used
+// as-is — no client-side knowledge of the backend's URL is needed.
 export const getProductImageUrl = (imagePath: string) => {
   if (!imagePath) return "";
-  if (imagePath.startsWith("/uploads") || imagePath.startsWith("/images")) {
-    return `${BACKEND_URL}${imagePath}`;
-  }
   return imagePath;
 };
 
